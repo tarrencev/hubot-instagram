@@ -11,7 +11,7 @@
 #
 # Commands:
 #   hubot insta tag <tag> <count>- Show recent instagram tags
-#   by default count is 1 
+#   by default count is 1
 #
 # Author:
 #   raysrashmi
@@ -31,18 +31,36 @@ module.exports = (robot) ->
     else
       msg.send 'Please provied tag'
       return
-    Instagram.tags.recent 
+    Instagram.tags.recent
       name: tag
       count: count
       complete: (data) ->
        for item in data
           msg.send item['images']['standard_resolution']['url']
 
+module.exports = (robot) ->
+  robot.respond /(kyle)( me )?(.*)/i, (msg) ->
+    count = 1
+    authenticateUser(msg)
+    if msg.match[3]
+      text = msg.match[3].trim().split(" ")
+      tag =  text[0]
+      count = parseInt(text[1]) if text[1]
+    else
+      msg.send 'Please provied tag'
+      return
+    Instagram.tags.search
+      q: 'kyleinfrontofwalls'
+      count: count
+      complete: (data) ->
+        images = item['images']['standard_resolution']['url']
+        msg.send images[Math.floor(Math.random() * images.length)]
+
 authenticateUser = (msg) ->
   config =
     client_key:     process.env.HUBOT_INSTAGRAM_CLIENT_KEY
     client_secret:  process.env.HUBOT_INSTAGRAM_ACCESS_KEY
- 
+
   unless config.client_key
     msg.send "Please set the HUBOT_INSTAGRAM_CLIENT_KEY environment variable."
     return
@@ -52,6 +70,6 @@ authenticateUser = (msg) ->
   Instagram.set('client_id', config.client_key)
   Instagram.set('client_secret', config.client_secret)
 
-          
+
 
 
