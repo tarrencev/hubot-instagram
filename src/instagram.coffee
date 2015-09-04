@@ -39,12 +39,14 @@ module.exports = (robot) ->
           msg.send item['images']['standard_resolution']['url']
 
 module.exports = (robot) ->
-  robot.respond /prenium/i, (msg) ->
+  robot.respond /(prenium)/i, (msg) ->
     authenticateUser(msg)
     Instagram.tags.search
       q: 'kyleinfrontofwalls'
       complete: (data) ->
-        msg.send data[Math.floor(Math.random() * data.length)]['images']['standard_resolution']['url']
+        index = Math.floor(Math.random() * data.length)
+        imageUrl = data[index]['images']['standard_resolution']['url']
+        msg.send imageUrl
 
 authenticateUser = (msg) ->
   config =
