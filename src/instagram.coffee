@@ -38,8 +38,7 @@ module.exports = (robot) ->
        for item in data
           msg.send item['images']['standard_resolution']['url']
 
-module.exports = (robot) ->
-  robot.respond /(prenium)/i, (msg) ->
+  robot.respond /prenium/i, (msg) ->
     authenticateUser(msg)
     Instagram.tags.search
       q: 'kyleinfrontofwalls'
