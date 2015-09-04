@@ -39,19 +39,10 @@ module.exports = (robot) ->
           msg.send item['images']['standard_resolution']['url']
 
 module.exports = (robot) ->
-  robot.respond /(kyle)( me )?(.*)/i, (msg) ->
-    count = 1
+  robot.respond /(wall)( me )?(.*)/i, (msg) ->
     authenticateUser(msg)
-    if msg.match[3]
-      text = msg.match[3].trim().split(" ")
-      tag =  text[0]
-      count = parseInt(text[1]) if text[1]
-    else
-      msg.send 'Please provied tag'
-      return
     Instagram.tags.search
       q: 'kyleinfrontofwalls'
-      count: count
       complete: (data) ->
         images = item['images']['standard_resolution']['url']
         msg.send images[Math.floor(Math.random() * images.length)]
