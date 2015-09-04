@@ -21,23 +21,6 @@
 Instagram = require('instagram-node-lib')
 
 module.exports = (robot) ->
-  robot.respond /(insta tag)( me )?(.*)/i, (msg) ->
-    count = 1
-    authenticateUser(msg)
-    if msg.match[3]
-      text = msg.match[3].trim().split(" ")
-      tag =  text[0]
-      count = parseInt(text[1]) if text[1]
-    else
-      msg.send 'Please provied tag'
-      return
-    Instagram.tags.recent
-      name: tag
-      count: count
-      complete: (data) ->
-       for item in data
-          msg.send item['images']['standard_resolution']['url']
-
   robot.respond /prenium/i, (msg) ->
     authenticateUser(msg)
     Instagram.tags.search
