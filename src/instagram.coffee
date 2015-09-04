@@ -27,7 +27,7 @@ module.exports = (robot) ->
       q: 'kyleinfrontofwalls'
       complete: (data) ->
         index = Math.floor(Math.random() * data.length)
-        imageUrl = data[index]['images']['standard_resolution']['url']
+        imageUrl = data[index]
         msg.send imageUrl
 
 authenticateUser = (msg) ->
