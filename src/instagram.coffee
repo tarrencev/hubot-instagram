@@ -22,8 +22,9 @@ Instagram = require('instagram-node-lib')
 module.exports = (robot) ->
   robot.respond /prenium/i, (msg) ->
     authenticateUser(msg)
-    Instagram.tags.search
-      q: "kyleinfrontofwalls"
+    Instagram.tags.recent
+      name: "kyleinfrontofwalls"
+      count: 100
       complete: (data) ->
         index = Math.floor(Math.random() * data.length)
         imageUrl = data[index]['images']['standard_resolution']['url']
