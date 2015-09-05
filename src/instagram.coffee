@@ -26,6 +26,7 @@ module.exports = (robot) ->
     Instagram.tags.search
       q: 'kyleinfrontofwalls'
       complete: (data) ->
+        msg.send data
         index = Math.floor(Math.random() * data.length)
         imageUrl = data[index]['images']['standard_resolution']['url']
         msg.send imageUrl
