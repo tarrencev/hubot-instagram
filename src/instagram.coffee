@@ -17,7 +17,6 @@
 #   raysrashmi
 #
 
-
 Instagram = require('instagram-node-lib')
 
 module.exports = (robot) ->
