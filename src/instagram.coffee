@@ -23,7 +23,7 @@ module.exports = (robot) ->
   robot.respond /prenium/i, (msg) ->
     authenticateUser(msg)
     Instagram.tags.search
-      q: 'kyleinfrontofwalls'
+      q: "kyleinfrontofwalls"
       complete: (data) ->
         index = Math.floor(Math.random() * data.length)
         imageUrl = data[index]
