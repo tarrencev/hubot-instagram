@@ -17,16 +17,18 @@
 #   raysrashmi
 #
 
+
 Instagram = require('instagram-node-lib')
 
 module.exports = (robot) ->
   robot.respond /prenium/i, (msg) ->
+    msg.send "got it"
     authenticateUser(msg)
     Instagram.tags.search
-      q: "kyleinfrontofwalls"
+      q: 'kyleinfrontofwalls'
       complete: (data) ->
         index = Math.floor(Math.random() * data.length)
-        imageUrl = data[index]
+        imageUrl = data[index]['images']['standard_resolution']['url']
         msg.send imageUrl
 
 authenticateUser = (msg) ->
