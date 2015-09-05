@@ -22,7 +22,6 @@ Instagram = require('instagram-node-lib')
 
 module.exports = (robot) ->
   robot.respond /prenium/i, (msg) ->
-    msg.send "got it"
     authenticateUser(msg)
     Instagram.tags.search
       q: 'kyleinfrontofwalls'
